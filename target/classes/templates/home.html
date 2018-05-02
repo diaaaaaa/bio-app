@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Participants</title>
+</head>
+<body>
+<h1> List of Participants : </h1>
+
+<table>
+    <span th:object="${adding}"></span>
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Date Of Birth</th>
+        <th>Email</th>
+        <th>Programing Language Skill</th>
+        <th>Bio</th>
+        <th></th>
+
+    </tr>
+    <tr th:each="participant : ${participants}">
+        <td th:text="${participant.firstName}">Diaa</td>
+        <td th:text="${participant.lastName}">Alkhatib</td>
+        <td th:text="${participant.dateOfBirth}">2000-10-20</td>
+        <td th:text="${participant.email}">ite.diaa@gmail.com</td>
+        <td th:text="${participant.programmingLanguage}">Java</td>
+        <td th:text="${participant.bio}">java developer</td>
+    </tr>
+</table>
+<hr/>
+
+    <form th:action="@{/addParticipant}" th:object="${participant}" method="post">
+        <input th:field="*{firstName}" placeholder="First Name" name="fname"/>
+        <input th:field="*{lastName}" placeholder="Last Name" name="lname"/>
+        <input th:field="*{dateOfBirth}" placeholder="Date Of Birth" name="dateOfBrith"/>
+        <input th:field="*{email}" placeholder="Email" name="email"/>
+        <input th:field="*{programmingLanguage}" placeholder="Programming Language Skill" name="pls"/>
+        <input th:field="*{bio}" placeholder="Bio" name="bio"/>
+
+        <button type="submit">add Participant</button>
+    </form>
+
+</body>
+</html>
